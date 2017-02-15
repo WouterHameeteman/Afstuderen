@@ -25,16 +25,14 @@ B = Fe*transFe;
 I = 1;
 lambda = sqrt(transFe*Fe);
 
-% hieruit volgt dus een 81x81 matrix ipv een 19x1 matrix, waarom? (81 is
-% overigens de lengte van lambdap, dus dat is wel logisch)
 for m = 1:n
     J(m) = det(Fe(m));
     % stress in the matrix
-    sigm = phim*(mu/J(m)*(B-I) + kappa*(log(J(m))/J(m))*I);
+    sigm = phim*(mu/J(m)*(B(m)-I) + kappa*(log(J(m))/J(m))*I);
     J(m);
 end
 
-sigm;
+sigm
 
 % J = det(Fe);
 % sigm = phim*(mu/J*(B-I) + kappa*(log(J)/J)*I);
