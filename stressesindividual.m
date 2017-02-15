@@ -16,8 +16,8 @@ end
 % total stress for matrix + collagen fibers
 sigtmatrix = [];
 for t = 1:round(n/2)
-    sigt = sigm + sumsig(t);
-    sigtmatrix(end+1) = sigt
+    sigt = sigm(t) + sumsig(t)
+    sigtmatrix(end+1) = sigt;
    
 end
 sigtmatrix;
