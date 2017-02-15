@@ -45,7 +45,7 @@ for k = 1:n
     size(lambdafin);
     sigcf(k,1) = phicf*(k1*(lambdafin(k))^2)/J(k)*(exp(k2*(lambdafin(k))^2-1)-1);
     sigcf(k,2) = k;
-%     waarom werkt dit niet?
-%     sigcf(k,3) = lambdafin(1:n);
+    sigcf(k,3) = lambdafin(n);
 end        
 
+sigcf(:,3)
