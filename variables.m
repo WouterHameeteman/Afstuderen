@@ -16,7 +16,7 @@ phicf = 0.02; % collagen
 lambdap = [1.2; 1.3; 1.1; 1.1; 1.2; 1.23; 1.24; 1.25; 1.1; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2];
 lambdapr = 1.2;
 lambdae = 1.2;
-lambda = lambdae*lambdapr;
+lambda = lambdae*lambdap;
 Fe = lambda;
 
 n = 19;
@@ -25,25 +25,29 @@ B = Fe*transFe;
 I = 1;
 lambda = sqrt(transFe*Fe);
 
+% hieruit volgt dus een 81x81 matrix ipv een 19x1 matrix, waarom? (81 is
+% overigens de lengte van lambdap, dus dat is wel logisch)
+for m = 1:n
+    J(m) = det(Fe(m));
+    % stress in the matrix
+    sigm = phim*(mu/J(m)*(B-I) + kappa*(log(J(m))/J(m))*I);
+    J(m);
+end
 
-% for m = 1:n
-%     J(m) = det(Fe(m));
-%     % stress in the matrix
-%     sigm = phim*(mu/J(m)*(B-I) + kappa*(log(J(m))/J(m))*I);
-%     J(m);
-% end
+sigm;
 
-J = det(Fe);
-sigm = phim*(mu/J*(B-I) + kappa*(log(J)/J)*I);
+% J = det(Fe);
+% sigm = phim*(mu/J*(B-I) + kappa*(log(J)/J)*I);
     
-      
 %create fibers
-sigcf = zeros(2,n);
+sigcf = zeros(n,3);
 for k = 1:n
-    lambdap;
-    lambda = lambdae*lambdapr;
-    sigcf(k,1) = phicf*(k1*(lambda)^2)/J*(exp(k2*(lambda)^2-1)-1);
+    lambdap(k);
+    lambdafin = lambdae*lambdap;
+    size(lambdafin);
+    sigcf(k,1) = phicf*(k1*(lambdafin(k))^2)/J(k)*(exp(k2*(lambdafin(k))^2-1)-1);
     sigcf(k,2) = k;
-%     sigcf(k,3) = lambdap*lambdae;
+%     waarom werkt dit niet?
+%     sigcf(k,3) = lambdafin(1:n);
 end        
 
