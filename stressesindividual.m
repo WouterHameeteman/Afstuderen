@@ -1,25 +1,25 @@
 function stressesindividual
 
 % [Fe] = calculatelambda;
-[n, sigm, sigcf, lambdalijst] = variables();
+[n, sigm, sigcf, lambdap, lambdaptime] = variables();
 
 % totalen optellen om tot totaal van 10 bundels van 10 vezels te komen
 t = 1:n;
+sumsig = zeros(round(n/2));
+
 for i = 1:n
-    for j = 1:round(n/2)   
-        if sigcf(j,2) == t(i)
-            sumsig(j) = sum(sigcf(j:j+9,1));            
-        end
-    end
+   locations = find(lambdaptime < i);
+   for j = 1:length(locations)
+       sumsig(i) = sumsig(i) + sigcf(j);
+   end
 end
-    
+        
 % total stress for matrix + collagen fibers
 sigtmatrix = [];
-for t = 1:round(n/2)
-    sigt = sigm(t) + sumsig(t)
+for t = 1:n
+    sigt = sigm(t) + sumsig(t);
     sigtmatrix(end+1) = sigt;
    
 end
-sigtmatrix;
-lambdalijst;
-scatter(1:round(n/2), sigtmatrix);
+sigtmatrix
+scatter(1:n, sigtmatrix);
