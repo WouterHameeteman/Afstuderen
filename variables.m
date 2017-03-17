@@ -1,4 +1,4 @@
-function [n, sigm, sigcf, lambdap] = variables()
+function [n, sigm, sigcf, lambdap, lambdaptime] = variables()
 
 % Define constants for matrix stress
 mu = 40e-3; % shear modulus
@@ -16,15 +16,17 @@ phim = 0.8; % matrix
 phicf = (1 - phim) / round(n/2); % collagen
 
 lambdap = [1.2; 1.3; 1.1; 1.1; 1.2; 1.23; 1.24; 1.25; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.4];
+lambdaptime = randi([1 n],1,n);
 lambdapr = 1.2;
 lambdae = 1.2;
+
 lambda = lambdae*lambdap;
 Fe = lambda;
-
 transFe = transpose(Fe);
 B = Fe*transFe;
 I = 1;
-lambda = sqrt(transFe*Fe);
+lambda = sqrt(transFe*Fe); % getal vs kolom
+
 
 for m = 1:n
     J(m) = det(Fe(m));
