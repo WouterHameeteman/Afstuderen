@@ -23,7 +23,7 @@ for i = 1:n
     % Volume fraction of the matrix
     phim = 0.8;
     locations = find(lambdaptime > i);
-    if length(locations) ~= 0
+    if ~isempty(locations)
         % Volume fraction of collagen fibers, total should equal 1.
         phicf(i) = (1 - phim) / length(locations);
     else phim = 1;
