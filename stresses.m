@@ -1,3 +1,5 @@
+function stresses
+
 % Number of fibers
 n = 19;
 
@@ -14,15 +16,16 @@ k2 = 4.75; % stiffness parameter 2
 phim = 0.8; 
 
 % Define the stretch ratios, and the time of each fiber
-lambdap = [1.2; 1.3; 1.1; 1.1; 1.2; 1.23; 1.24; 1.25; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.2; 1.4];
+lambdap = [1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1];
 lambdaptime = randi([1 n],1,n);
-lambdae = 1.2;
+lambdae = 1;
 
 % Locations of fibers that are still acceptable, that have not overstayed their welcome 
-locations = find(lambdaptime > i);
-
-% Volume fraction of collagen fibers, total should equal 1.
-phicf = (1 - phim) / length(locations);
+for i = 1:n
+     locations = find(lambdaptime > i);
+     % Volume fraction of collagen fibers, total should equal 1.
+    phicf = (1 - phim) / length(locations);
+end
 
 %Define some more math symbols
 lambda = lambdae*lambdap;
