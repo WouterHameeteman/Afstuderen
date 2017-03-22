@@ -52,7 +52,6 @@ sigcf = zeros(n,3);
 for k = 1:n
     lambdap(k);
     lambdafin = lambdae*lambdap;
-    phicf(19)
     sigcf(k,1) = phicf(k)*(k1*(lambdafin(k))^2)/J(k)*(exp(k2*(lambdafin(k))^2-1)-1);
     sigcf(k,2) = k;
     sigcf(k,3) = lambdafin(k);
@@ -66,7 +65,7 @@ for i = 1:n
        sigcf(j,1);
        sumsig(i) = sumsig(i) + sigcf(j,1);
    end
-%    disp('Fibers discontinued after number'), i, find(lambdaptime<=i)
+   disp('Fibers discontinued after number'), i, find(lambdaptime<=i)
 end
 
 % Total stress for matrix + collagen fibers
